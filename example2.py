@@ -1,4 +1,4 @@
-#Simple Asynchronous code without benefits
+#Awaitable Tasks introduced
 
 import asyncio
 import time
@@ -11,10 +11,13 @@ async def func(x):
     return x
 
 async def main():
-    res1 = await func(1)
+    tsk1 = asyncio.create_task(func(1))
+    tsk2 = asyncio.create_task(func(2))
+
+    res1 = await tsk1
     print("Func 1 completed!")
 
-    res2 = await func(2)
+    res2 = await tsk2
     print("Func 2 completed!")
 
     return [res1, res2]
